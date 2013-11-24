@@ -32,6 +32,6 @@ source "$owd/txzExtract.sh"
 	cd "$owd/$PkgName/"; git checkout $TagName;
 
 #build the package
-cd "$owd/$PkgName/"; ./configure; make clean; make;
+cd "$owd/$PkgName/"; ./configure --prefix=/usr; make clean; make;
 fakeroot checkinstall --install=no --fstrans --pkgname="$PkgName" --pkgversion="$PkgVersion" -y -D make install
 
