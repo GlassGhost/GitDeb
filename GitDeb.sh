@@ -33,5 +33,5 @@ source "$owd/txzExtract.sh"
 
 #build the package
 cd "$owd/$PkgName/"; ./configure; make clean; make;
-fakeroot checkinstall --install=no --pkgname="$PkgName" --pkgversion="$PkgVersion" -y -D make install
+fakeroot checkinstall --install=no --fstrans --pkgname="$PkgName" --pkgversion="$PkgVersion" -y -D make install
 
