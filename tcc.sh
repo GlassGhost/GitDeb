@@ -16,7 +16,30 @@ owd="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" #Path to THIS script.
 #   express or implied. See the License for  the  specific  language
 #   governing permissions and limitations under the License.
 #_______________________________________________________________________________
-#path/to/GitDeb.sh git://repo.or.cz/tinycc.git tcc 0.9.26 release_0_9_26
+#	Be careful to correctly quote/escape the name, to prevent shell expansion
+PkgName="tcc"; #--pkgname
+GitUrl="git://repo.or.cz/tinycc.git"; #--maintainer
+GitTagName="release_0_9_26";
+PkgVersion="0.9.26"; #--pkgversion
+PkgLicense="LGPLv2"; #--pkglicense
 
-bash $owd/GitDeb.sh git://repo.or.cz/tinycc.git tcc 0.9.26 release_0_9_26
+#--requires		Dependencies required by this package.
+#--provides		Features provided by this package (currently only on RPM and Deb).
+
+# path/to/Checkout.sh git://someurl/someproject.git someproject release_0_1
+bash $owd/Checkout.sh ${GitUrl} ${PkgName} ${GitTagName}
+#set "description-pak" file for the deb description
+tee "${owd}/${PkgName}/description-pak" > /dev/null <<EOF
+TCC is a tiny but complete ISOC99 C compiler which enables you to use C as scripting language. TCC has its roots in the OTCC project. The TCCBOOT boot loader demonstrate the speed of TCC by compiling and launching a Linux kernel in less than 15 seconds.
+
+more info at http://bellard.org
+EOF
+# Build
+cd "$owd/$PkgName/";
+#autoreconf --install;
+./configure --prefix=/usr;
+make clean;
+make;
+# path/to/FakeMake.sh someproject 0.1
+bash $owd/FakeMake.sh ${PkgName} ${GitUrl} ${GitTagName} ${PkgVersion} ${PkgLicense}
 

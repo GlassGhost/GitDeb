@@ -13,7 +13,7 @@
 #   express or implied. See the License for  the  specific  language
 #   governing permissions and limitations under the License.
 #_______________________________________________________________________________
-txzExtract (){ infile=$1; OutDirectory=$2
+infile=$1; OutDirectory=$2
 #txzExtract "/path/to/somearchive.tar.xz" "/path/to/some_directory"
 	echo "";
 	nice -19 xz -dc $infile | tar xvpC "$OutDirectory" \
@@ -21,5 +21,5 @@ txzExtract (){ infile=$1; OutDirectory=$2
 		x=$((x+1))
 		echo -en "\r$x extracted";
 	done; echo "";
-} #_____________________________________________________________________________
+#_______________________________________________________________________________
 

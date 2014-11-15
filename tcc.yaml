@@ -1,0 +1,41 @@
+"tcc": !!map {#--pkgname
+	"GitUrl": "git://repo.or.cz/tinycc.git",#--maintainer
+	"PkgLicense": "LGPLv2",#--pkglicense
+	"Maintainer": "",
+	"Summary": "",
+	#Revision Info
+		"GitTagName": "release_0_9_26",
+		"PkgVersion": "0.9.26",#--pkgversion
+		#http://www.debian.org/doc/manuals/debian-faq/ch-pkg_basics#s-depends
+		"Provides": "CC",
+		"Depends": "",
+		"Recommends": "",
+		"Suggests": "",
+		"Replaces": "",
+		"Conflicts": "",
+		"Breaks": "",
+
+	"BUILD_COMMANDS": "
+# Build
+cd \"$owd/$PkgName/\";
+#autoreconf --install;
+./configure --prefix=/usr && \
+make clean && \
+make;
+fakeroot checkinstall --install=no --fstrans -y -D \
+--pkgname=\"$PkgName\" \
+--maintainer=\"$GitUrl\" \
+--pkgversion=\"$PkgVersion\" \
+--pkglicense=\"$PkgLicense\" \
+--pakdir=\"$owd\" \
+make install
+"
+
+#	"Group": "",
+#	"Release": "",
+#	"Prohibited-Architecture(s)": "",
+#	"Exclusive-Architecture(s)": "",
+#	"Requires": "",
+#	"Source location": "",
+#	"Alternate source location": ""
+}
