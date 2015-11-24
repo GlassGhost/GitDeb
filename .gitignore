@@ -1,4 +1,6 @@
 tcc
 tcc/*
 tcc.txz
+*.txz
+*.deb
 
