@@ -19,8 +19,8 @@ owd="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" #Path to THIS script.
 #	Be careful to correctly quote/escape the name, to prevent shell expansion
 PkgName="gambit"; #--pkgname
 GitUrl="https://github.com/feeley/gambit.git"; #--maintainer
-GitTagName="v4.7.0";
-PkgVersion="4.7.0"; #--pkgversion
+GitTagName="v4.8.1";
+PkgVersion="4.8.1"; #--pkgversion
 PkgLicense="Apache 2.0"; #--pkglicense
 #--pkgarch		Set package architecture.
 #--pakdir		Where to save the new package.
