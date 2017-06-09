@@ -19,26 +19,12 @@ owd="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" #Path to THIS script.
 #	Be careful to correctly quote/escape the name, to prevent shell expansion
 PkgName="gambit"; #--pkgname
 GitUrl="https://github.com/feeley/gambit.git"; #--maintainer
-GitTagName="v4.8.1";
-PkgVersion="4.8.1"; #--pkgversion
+GitTagName="v4.8.8";
+PkgVersion="4.8.8"; #--pkgversion
 PkgLicense="Apache 2.0"; #--pkglicense
 #--pkgarch		Set package architecture.
 #--pakdir		Where to save the new package.
 #--requires		Dependencies required by this package.
-#libssl libdb4.8 libboost miniupnpc qt protobuf libqrencode
-#sudo aptitude install -y autoconf build-essential checkinstall libtool autotools-dev libssl-dev libboost-all-dev libqrencode-dev libminiupnpc-dev libqt4-dev libprotobuf-dev protobuf-compiler
-
-
-#For Qt 5 you need the following: apt-get install libqt5gui5 libqt5core5 libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev
-
-
-
-#autoconf build-essential checkinstall libssl-dev 
-#libdb++-dev libboost-all-dev libminiupnpc-dev 
-#libqt4-core libqt4-gui libqt4-dev qt4-qmake libqrencode-dev
-
-
-
 #--with-incompatible-bdb
 #--provides		Features provided by this package (currently only on RPM and Deb).
 
@@ -46,10 +32,12 @@ PkgLicense="Apache 2.0"; #--pkglicense
 bash $owd/Checkout.sh ${GitUrl} ${PkgName} ${GitTagName}
 # Build
 cd "$owd/$PkgName/";
-./configure --prefix=/usr  --enable-single-host;
-make clean;
-make -j4 from-scratch;
-make check;
+./configure --prefix=/usr
+make -j4 current-gsc-boot
+./configure --prefix=/usr --enable-single-host;
+make -j4 from-scratch
+make check
+make -j4 doc
 # path/to/FakeMake.sh someproject 0.1
 bash $owd/FakeMake.sh ${PkgName} ${GitUrl} ${GitTagName} ${PkgVersion} ${PkgLicense}
 
